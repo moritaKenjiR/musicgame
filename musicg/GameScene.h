@@ -1,5 +1,8 @@
 #pragma once
 #include "BaseScene.h"
+#include <memory>
+#include <vector>
+class BaseNote;
 class SceneMng;
 class Input;
 
@@ -11,8 +14,16 @@ public:
 	~GameScene();
 	void Update(const Input& input);
 	void Draw();
+	bool GameInit();
 
+	void GameDraw();
 private:
+	std::vector<std::shared_ptr<BaseNote>> _notes;
+
+
+
+
+
 	unsigned int _frame = 0;
 
 	void FadeinUpdate(const Input&);

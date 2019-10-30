@@ -27,7 +27,12 @@ void GameScene::Update(const Input & input)
 
 void GameScene::Draw()
 {
+	GameDraw();
 	(this->*_drawer)();
+}
+
+void GameScene::GameDraw()
+{
 }
 
 void GameScene::FadeinUpdate(const Input &)
