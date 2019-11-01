@@ -5,6 +5,7 @@
 class BaseNote;
 class SceneMng;
 class Input;
+class Player;
 
 class GameScene :
 	public BaseScene
@@ -15,11 +16,11 @@ public:
 	void Update(const Input& input);
 	void Draw();
 	bool GameInit();
-
+	void GameUpdate();
 	void GameDraw();
 private:
 	std::vector<std::shared_ptr<BaseNote>> _notes;
-
+	std::shared_ptr<Player> _player;
 
 
 

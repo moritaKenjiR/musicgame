@@ -1,6 +1,6 @@
 #include "NormalNote.h"
 #include <DxLib.h>
-
+#include "Option.h"
 
 NormalNote::NormalNote()
 {
@@ -18,9 +18,10 @@ NormalNote::~NormalNote()
 
 void NormalNote::Update()
 {
+	_pos.y += 4;
 }
 
 void NormalNote::Draw()
 {
-	DrawCircle(_pos.x, _pos.y, 10, 0xc03030);
+	DrawCircle(_pos.x, _pos.y, 32, 0xc03030);
 }

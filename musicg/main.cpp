@@ -1,4 +1,5 @@
 #include "Application.h"
+
 int main()
 {
 	auto &app = Application::Instance();

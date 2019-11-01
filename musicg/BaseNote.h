@@ -1,12 +1,7 @@
 #pragma once
 #include "Geometry.h"
+#include "Option.h"
 
-enum class noteType
-{
-	Normal,
-	Long,
-	max,
-};
 
 class BaseNote
 {

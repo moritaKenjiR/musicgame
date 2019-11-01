@@ -1,5 +1,5 @@
 #include "LongNote.h"
-
+#include "Option.h"
 
 
 LongNote::LongNote()

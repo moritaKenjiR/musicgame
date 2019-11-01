@@ -141,6 +141,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="NormalNote.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="SceneMng.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -155,6 +156,8 @@
     <ClInclude Include="LongNote.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="NormalNote.h" />
+    <ClInclude Include="Option.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="SceneMng.h" />
     <ClInclude Include="TitleScene.h" />

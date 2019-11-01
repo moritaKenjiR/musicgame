@@ -4,6 +4,9 @@
 #include "Application.h"
 #include "ResultScene.h"
 #include "SceneMng.h"
+#include "NormalNote.h"
+#include "LongNote.h"
+#include "Player.h"
 
 constexpr int fade_interval = 60;
 
@@ -13,6 +16,7 @@ GameScene::GameScene(SceneMng& mng) :BaseScene(mng)
 
 	_updater = &GameScene::FadeinUpdate;
 	_drawer = &GameScene::FadeDrawer;
+	GameInit();
 }
 
 GameScene::~GameScene()
@@ -22,17 +26,48 @@ GameScene::~GameScene()
 void GameScene::Update(const Input & input)
 {
 	++_frame;
+	GameUpdate();
 	(this->*_updater)(input);
 }
 
 void GameScene::Draw()
 {
 	GameDraw();
+	
 	(this->*_drawer)();
+}
+
+bool GameScene::GameInit()
+{
+	_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, -120.0f)));
+	_notes.push_back(std::make_shared<NormalNote>(Position2f(512.0f, -150.0f)));
+	_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, -180.0f)));
+	_notes.push_back(std::make_shared<NormalNote>(Position2f(768.0f, -190.0f)));
+	_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, -200.0f)));
+
+	_player = std::make_shared<Player>();
+	return false;
+}
+
+void GameScene::GameUpdate()
+{
+	for (auto note : _notes)
+	{
+		note->Update();
+	}
 }
 
 void GameScene::GameDraw()
 {
+	DrawLine(448, 0, 448, 720, 0xffffff);
+	DrawLine(576, 0, 576, 720, 0xffffff);
+	DrawLine(704, 0, 704, 720, 0xffffff);
+	DrawLine(832, 0, 832, 720, 0xffffff);
+	DrawLine(0, 688, 1280, 688, 0xc00000);
+	for (auto note : _notes)
+	{
+		note->Draw();
+	}
 }
 
 void GameScene::FadeinUpdate(const Input &)
@@ -46,7 +81,8 @@ void GameScene::FadeinUpdate(const Input &)
 
 void GameScene::WaitUpdate(const Input & input)
 {
-	if (input.Ispressed(0, "ok") && !input.IsTriggered(0, "ok"))
+	
+	if (input.Ispressed(0, "pause") && !input.IsTriggered(0, "pause"))
 	{
 		_updater = &GameScene::FadeoutUpdate;
 		_drawer = &GameScene::FadeDrawer;

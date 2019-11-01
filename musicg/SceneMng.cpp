@@ -4,6 +4,7 @@
 #include "ResultScene.h"
 #include "GameScene.h"
 #include "MenuScene.h"
+#include <DxLib.h>
 
 
 SceneMng::SceneMng()
@@ -34,9 +35,11 @@ void SceneMng::PopScene()
 
 void SceneMng::Update(const Input & input)
 {
+	
 	_scene.front()->Update(input);
 	for (auto rit = _scene.rbegin(); rit != _scene.rend(); ++rit)
 	{
 		(*rit)->Draw();
 	}
+	
 }
