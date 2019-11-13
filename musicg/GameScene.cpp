@@ -26,7 +26,7 @@ GameScene::~GameScene()
 void GameScene::Update(const Input & input)
 {
 	++_frame;
-	GameUpdate();
+	GameUpdate(input);
 	(this->*_updater)(input);
 }
 
@@ -39,22 +39,23 @@ void GameScene::Draw()
 
 bool GameScene::GameInit()
 {
-	_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, -120.0f)));
-	_notes.push_back(std::make_shared<NormalNote>(Position2f(512.0f, -150.0f)));
-	_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, -180.0f)));
-	_notes.push_back(std::make_shared<NormalNote>(Position2f(768.0f, -190.0f)));
-	_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, -200.0f)));
-
+	_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, 0.0f)));
+	float beatTime = 60 * 4 * 0.25 / 300 * 60 * 16;
+	for (int i = 0; i < 50; i++)
+	{
+		_notes.push_back(std::make_shared<NormalNote>(Position2f(640.0f, -160 * i)));
+	}
 	_player = std::make_shared<Player>();
 	return false;
 }
 
-void GameScene::GameUpdate()
+void GameScene::GameUpdate(const Input & input)
 {
 	for (auto note : _notes)
 	{
 		note->Update();
 	}
+	_player->Update(input);
 }
 
 void GameScene::GameDraw()
@@ -68,6 +69,7 @@ void GameScene::GameDraw()
 	{
 		note->Draw();
 	}
+	//_player->Draw();
 }
 
 void GameScene::FadeinUpdate(const Input &)

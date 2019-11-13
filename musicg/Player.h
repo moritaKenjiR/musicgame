@@ -13,6 +13,5 @@ public:
 
 private:
 	LaneType _nowLane;
-	const Input _input;
 };
 

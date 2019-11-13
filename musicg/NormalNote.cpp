@@ -18,10 +18,10 @@ NormalNote::~NormalNote()
 
 void NormalNote::Update()
 {
-	_pos.y += 4;
+	_pos.y += 16;
 }
 
 void NormalNote::Draw()
 {
-	DrawCircle(_pos.x, _pos.y, 32, 0xc03030);
+	DrawOval(_pos.x, _pos.y,32, 12, 0xc03030,true);
 }

@@ -16,7 +16,7 @@ public:
 	void Update(const Input& input);
 	void Draw();
 	bool GameInit();
-	void GameUpdate();
+	void GameUpdate(const Input &);
 	void GameDraw();
 private:
 	std::vector<std::shared_ptr<BaseNote>> _notes;
